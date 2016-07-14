@@ -1,0 +1,2 @@
+class ReplicationTarget < ApplicationRecord
+end

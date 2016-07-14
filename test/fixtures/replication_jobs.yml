@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  replication_policy: one
+  repository: MyString
+  operation: MyString
+  tags: MyString
+
+two:
+  status: MyString
+  replication_policy: two
+  repository: MyString
+  operation: MyString
+  tags: MyString

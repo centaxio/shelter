@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  project: one
+  target_id: 1
+  enabled: false
+  description: MyText
+  cron_str: MyString
+  start_time: 2016-07-14 23:00:55
+
+two:
+  name: MyString
+  project: two
+  target_id: 1
+  enabled: false
+  description: MyText
+  cron_str: MyString
+  start_time: 2016-07-14 23:00:55
