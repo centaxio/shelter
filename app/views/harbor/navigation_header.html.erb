@@ -1,0 +1,9 @@
+<% if current_user %>
+  <ul class="nav-custom">
+    <li><a tag="dashboard" href="/dashboard">// 'dashboard' | tr //</a></li>
+    <li><a tag="project" href="/project">// 'projects' |  tr //</a></li>          
+    <% if current_user.is_admin %>
+      <li><a tag="admin_option" href="/admin_option">// 'admin_options' | tr //</a></li>
+    <% end %>
+  </ul>
+<% end %>

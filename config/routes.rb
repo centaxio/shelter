@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
     resources :statistics, only: [:index]
 
-    resources :users, only: [:index, :create, :update, :destroy] do
+    resources :users, only: [:index, :show, :create, :update, :destroy] do
       member do
         put :password
         put :sysadmin

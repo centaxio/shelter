@@ -8,6 +8,10 @@ class Api::UsersController < ApplicationController
   def index
   end
 
+  def show
+    render plain: '', status: 401
+  end
+
   def create
   end
 

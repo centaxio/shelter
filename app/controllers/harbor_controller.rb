@@ -1,5 +1,5 @@
 class HarborController < ApplicationController
-  # translate the terrible harbor routes in this ugly way
+  # translate the horrible harbor routes in this ugly way
 
   def index
   end
@@ -76,10 +76,15 @@ class HarborController < ApplicationController
 
   # GET /optional_menu
   def optional_menu
+    @username = current_user&.username
+    @allow_add_new = !!current_user&.is_admin # and authmode == 'db_auth'
+
+    render layout: false
   end
 
   # GET /navigation_header
   def navigation_header
+    render layout: false
   end
 
   # GET /navigation_detail
@@ -88,5 +93,7 @@ class HarborController < ApplicationController
 
   # GET /sign_in
   def sign_in
+    @auth_mode = 'db_auth'
+    render layout: false
   end
 end

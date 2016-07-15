@@ -12,5 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require bootstrap.min
+//= require angular.min
+//= require angular-resource.min
+//= require angular-messages.min
+//= require angular-cookies.min
+//= require moment-with-locales.min
+//= require bootstrap-datetimepicker.min
+
+//= require ./harbor.js

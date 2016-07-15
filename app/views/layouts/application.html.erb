@@ -1,14 +1,48 @@
+<% title @title if @title %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Shelter</title>
+	  <title><%= yield :title %></title>
+
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
 
-  <body>
+    <%#= render 'header_include' %>
+  </head>
+  <body ng-app="harbor.app" ng-controller="CurrentUserController as vm">
+    <nav class="navbar navbar-default navbar-custom" ng-controller="HeaderController as vm">
+      <div class="container container-custom">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-harbor-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="//vm.defaultUrl//"><img class="img-responsive" src="/static/resources/img/Harbor_Logo_rec.png" alt="Harbor's Logo"/></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-harbor-navbar-collapse-1">
+		      <optional-menu login-status="//vm.loginStatus//"></optional-menu>     
+	        <ul class="nav navbar-nav navbar-right">
+		        <li>
+		          <navigation-header></navigation-header>
+		        </li>
+	          <li>
+	            <search-input search-input='vm.searchInput'></search-input>
+		        </li>
+	        </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
     <%= yield %>
+
+    <dismissable-alerts></dismissable-alerts>
+    <div class="footer-absolute footer" ng-controller="FooterController as vm">
+      <p>// 'copyright' | tr // © 2015-2016 VMware, Inc. // 'all_rights_reserved' | tr //</p>
+    </div>
+
   </body>
 </html>
