@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  root to: 'harbor#index'
+
+
   namespace :api do
     concern :index_deleteable do
       delete :index, on: :collection, action: :destroy
@@ -61,4 +64,7 @@ Rails.application.routes.draw do
 
     resources :logs, only: [:index]
   end
+
+  # translate the horrible harbor routes in this ugly way
+  match ':action', via: :all, controller: :harbor
 end
