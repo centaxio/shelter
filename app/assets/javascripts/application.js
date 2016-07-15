@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require angular.min
-//= require angular-resource.min
 //= require angular-messages.min
 //= require angular-cookies.min
 //= require moment-with-locales.min
