@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :search, only: [:index]
 
     resources :projects, only: [:index, :create] do
-      resources :members, only: [:index, :create, :update, :destroy]
+      resources :members, only: [:index, :show, :create, :update, :destroy]
 
       member do
         put :publicity
