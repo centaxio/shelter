@@ -6,4 +6,9 @@ class Project < ApplicationRecord
   def add_member(user, role)
     # TODO
   end
+
+  def repo_count
+    # TODO
+    2
+  end
 end

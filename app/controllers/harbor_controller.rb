@@ -50,9 +50,9 @@ class HarborController < ApplicationController
 
   # GET /reset_password
   def reset_password
-    return redirect_to root_path unless params[:reset_uuid]
+    redirect_to root_path and return unless params[:reset_uuid]
     user = User.find_by(reset_uuid: params[:reset_uuid])
-    return redirect_to root_path unless user
+    redirect_to root_path and return unless user
 
     @reset_uuid = params[:uuid]
   end
@@ -82,7 +82,7 @@ class HarborController < ApplicationController
   def reset
     user = User.find_by!(reset_uuid: params[:reset_uuid])
     user.password = params[:password] if params[:password]
-    return render plain: "Error occurred in reset password: #{user.errors.join("\n")}" unless user.save
+    render plain: "Error occurred in reset password: #{user.errors.join("\n")}" and return unless user.save
     render plain: ''
   end
 

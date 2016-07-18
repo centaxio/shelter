@@ -25,4 +25,17 @@ class User < ApplicationRecord
     # TODO
     true
   end
+
+  def relevant_projects(project_name = nil)
+    # TODO
+    Project.all
+  end
+
+  def is_project_admin(project)
+    return true if is_admin
+    project_roles(project).each do |role|
+      return true if role.id == Role.PROJECTADMIN
+    end
+    false
+  end
 end
