@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724065453) do
+ActiveRecord::Schema.define(version: 20160724154220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,12 +24,32 @@ ActiveRecord::Schema.define(version: 20160724065453) do
     t.index ["user_id"], name: "index_namespaces_on_user_id", using: :btree
   end
 
+  create_table "registry_events", force: :cascade do |t|
+    t.string   "original_id"
+    t.string   "action"
+    t.string   "repository"
+    t.string   "actor"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["original_id"], name: "index_registry_events_on_original_id", unique: true, using: :btree
+  end
+
+  create_table "repositories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "pull_count"
+    t.integer  "namespace_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["namespace_id"], name: "index_repositories_on_namespace_id", using: :btree
+  end
+
   create_table "repository_teams", force: :cascade do |t|
-    t.string   "repository_name"
     t.integer  "team_id"
     t.integer  "role"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "repository_id"
+    t.index ["repository_id"], name: "index_repository_teams_on_repository_id", using: :btree
     t.index ["team_id"], name: "index_repository_teams_on_team_id", using: :btree
   end
 
@@ -40,6 +60,13 @@ ActiveRecord::Schema.define(version: 20160724065453) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["namespace_id"], name: "index_teams_on_namespace_id", using: :btree
+  end
+
+  create_table "teams_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "team_id"
+    t.index ["team_id"], name: "index_teams_users_on_team_id", using: :btree
+    t.index ["user_id"], name: "index_teams_users_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,6 +89,8 @@ ActiveRecord::Schema.define(version: 20160724065453) do
   end
 
   add_foreign_key "namespaces", "users"
+  add_foreign_key "repositories", "namespaces"
+  add_foreign_key "repository_teams", "repositories"
   add_foreign_key "repository_teams", "teams"
   add_foreign_key "teams", "namespaces"
 end
